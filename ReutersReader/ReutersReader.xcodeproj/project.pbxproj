@@ -15,6 +15,13 @@
 		66775939233648E10079BD3E /* FeedAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66775938233648E10079BD3E /* FeedAdapter.swift */; };
 		6677593B233653F50079BD3E /* NameTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6677593A233653F50079BD3E /* NameTableViewController.swift */; };
 		66B633FA233665D900D16701 /* FeedDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B633F9233665D900D16701 /* FeedDetailViewController.swift */; };
+		66B633FD233680C300D16701 /* DataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B633FC233680C300D16701 /* DataManager.swift */; };
+		66B633FF233681D000D16701 /* CloudDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B633FE233681D000D16701 /* CloudDataSource.swift */; };
+		66B63401233681E900D16701 /* LocalDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B63400233681E900D16701 /* LocalDataSource.swift */; };
+		66B6340323368C6D00D16701 /* DataParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B6340223368C6D00D16701 /* DataParser.swift */; };
+		66B6340623368CC400D16701 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B6340523368CC400D16701 /* Feed.swift */; };
+		66B6340823368D0E00D16701 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B6340723368D0E00D16701 /* DataSource.swift */; };
+		66B6340A2336938C00D16701 /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B634092336938C00D16701 /* FeedTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +35,13 @@
 		66775938233648E10079BD3E /* FeedAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedAdapter.swift; sourceTree = "<group>"; };
 		6677593A233653F50079BD3E /* NameTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameTableViewController.swift; sourceTree = "<group>"; };
 		66B633F9233665D900D16701 /* FeedDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDetailViewController.swift; sourceTree = "<group>"; };
+		66B633FC233680C300D16701 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DataManager.swift; path = ReutersReader/DataManager.swift; sourceTree = SOURCE_ROOT; };
+		66B633FE233681D000D16701 /* CloudDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CloudDataSource.swift; path = ReutersReader/CloudDataSource.swift; sourceTree = SOURCE_ROOT; };
+		66B63400233681E900D16701 /* LocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocalDataSource.swift; path = ReutersReader/LocalDataSource.swift; sourceTree = SOURCE_ROOT; };
+		66B6340223368C6D00D16701 /* DataParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DataParser.swift; path = ReutersReader/DataParser.swift; sourceTree = SOURCE_ROOT; };
+		66B6340523368CC400D16701 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Feed.swift; path = ReutersReader/Feed.swift; sourceTree = SOURCE_ROOT; };
+		66B6340723368D0E00D16701 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DataSource.swift; path = ReutersReader/DataSource.swift; sourceTree = SOURCE_ROOT; };
+		66B634092336938C00D16701 /* FeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,15 +76,46 @@
 			children = (
 				66775922233646F50079BD3E /* AppDelegate.swift */,
 				6677593A233653F50079BD3E /* NameTableViewController.swift */,
-				66775926233646F50079BD3E /* FeedViewController.swift */,
-				66775938233648E10079BD3E /* FeedAdapter.swift */,
+				66B6340B2336964800D16701 /* FeedViewController */,
 				66B633F9233665D900D16701 /* FeedDetailViewController.swift */,
+				66B633FB2336809E00D16701 /* Data Fetching */,
 				66775928233646F50079BD3E /* Main.storyboard */,
 				6677592B233646F80079BD3E /* Assets.xcassets */,
 				6677592D233646F80079BD3E /* LaunchScreen.storyboard */,
 				66775930233646F80079BD3E /* Info.plist */,
 			);
 			path = ReutersReader;
+			sourceTree = "<group>";
+		};
+		66B633FB2336809E00D16701 /* Data Fetching */ = {
+			isa = PBXGroup;
+			children = (
+				66B6340423368CB700D16701 /* Models */,
+				66B633FC233680C300D16701 /* DataManager.swift */,
+				66B6340723368D0E00D16701 /* DataSource.swift */,
+				66B633FE233681D000D16701 /* CloudDataSource.swift */,
+				66B63400233681E900D16701 /* LocalDataSource.swift */,
+				66B6340223368C6D00D16701 /* DataParser.swift */,
+			);
+			path = "Data Fetching";
+			sourceTree = "<group>";
+		};
+		66B6340423368CB700D16701 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				66B6340523368CC400D16701 /* Feed.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		66B6340B2336964800D16701 /* FeedViewController */ = {
+			isa = PBXGroup;
+			children = (
+				66775926233646F50079BD3E /* FeedViewController.swift */,
+				66B634092336938C00D16701 /* FeedTableViewCell.swift */,
+				66775938233648E10079BD3E /* FeedAdapter.swift */,
+			);
+			path = FeedViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -145,10 +190,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				6677593B233653F50079BD3E /* NameTableViewController.swift in Sources */,
+				66B6340A2336938C00D16701 /* FeedTableViewCell.swift in Sources */,
+				66B633FD233680C300D16701 /* DataManager.swift in Sources */,
+				66B6340323368C6D00D16701 /* DataParser.swift in Sources */,
+				66B633FF233681D000D16701 /* CloudDataSource.swift in Sources */,
 				66775927233646F50079BD3E /* FeedViewController.swift in Sources */,
 				66B633FA233665D900D16701 /* FeedDetailViewController.swift in Sources */,
 				66775939233648E10079BD3E /* FeedAdapter.swift in Sources */,
+				66B63401233681E900D16701 /* LocalDataSource.swift in Sources */,
 				66775923233646F50079BD3E /* AppDelegate.swift in Sources */,
+				66B6340823368D0E00D16701 /* DataSource.swift in Sources */,
+				66B6340623368CC400D16701 /* Feed.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

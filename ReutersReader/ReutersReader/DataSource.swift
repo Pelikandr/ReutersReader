@@ -7,3 +7,9 @@
 //
 
 import Foundation
+
+protocol DataSource {
+    func getBusinessFeed(_ completion: (([Feed]?, Error?) -> Void)?)
+    func getEnterteinmentFeed(_ completion: (([Feed]?, Error?) -> Void)?)
+    func getEnvironmentFeed(_ completion: (([Feed]?, Error?) -> Void)?)
+}

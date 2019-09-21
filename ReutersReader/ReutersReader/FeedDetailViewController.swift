@@ -11,5 +11,13 @@ import UIKit
 class FeedDetailViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var descriptionTextView: UITextView!
-    
+
+    var feedItem: Feed?
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+        titleLabel.text = feedItem?.title
+        descriptionTextView.text = feedItem?.description
+    }
 }

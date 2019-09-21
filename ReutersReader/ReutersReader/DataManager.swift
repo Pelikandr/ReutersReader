@@ -7,3 +7,12 @@
 //
 
 import Foundation
+
+class DataManager {
+    static var shared = DataManager()
+
+    var dataSource: DataSource {
+        //TODO: add check for Internet connection. If there is no Internet connection - use LocalDataSource instead
+        return CloudDataSource()
+    }
+}

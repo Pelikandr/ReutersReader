@@ -7,3 +7,8 @@
 //
 
 import Foundation
+
+struct Feed {
+    let title: String
+    let description: String
+}

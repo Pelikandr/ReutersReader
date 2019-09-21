@@ -20,6 +20,25 @@ class NameTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateDate), userInfo: nil, repeats: true)
+
+        //        let url = URL(string: "http://feeds.reuters.com/reuters/businessNews.xml")
+//
+//        let task = URLSession.shared.dataTask(with: url!) { data, response, error in
+//            guard let data = data, error == nil else {
+//                print(error ?? "Unknown error")
+//                return
+//            }
+//            let str = String(data: data, encoding: .utf8)
+//            print(str)
+//        }
+//        task.resume()
+//        print(task)
+//        let parser = XMLParser(data: Data)
+//        parser.delegate = self as! XMLParserDelegate
+//        if parser.parse() {
+//            print(self.results ?? "No results")
+//        }
+
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

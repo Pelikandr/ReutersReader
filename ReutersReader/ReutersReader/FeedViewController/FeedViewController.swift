@@ -8,11 +8,32 @@
 
 import UIKit
 
+enum FeedViewControllerState {
+    case business
+    case entertainment
+}
+
+
 class FeedViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
 
     private let adapter = FeedAdapter()
+    private var state: FeedViewControllerState = .business {
+        didSet {
+            loadData() { [weak self] (data: [Section<Feed>]?, error: Error?) in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else if let data = data {
+                    self?.adapter.data = data
+                    self?.tableView.reloadData()
+                } else {
+                    print("No data error")
+                }
+            }
+        }
+    }
 
     private var choosedFeedItem: Feed?
 
@@ -27,22 +48,53 @@ class FeedViewController: UIViewController {
             self.performSegue(withIdentifier: "toFeedDetail", sender: nil)
         }
 
-        DataManager.shared.dataSource.getBusinessFeed { [weak self] (data: [Feed]?, error: Error?) in
-            if let error = error {
-                print(error.localizedDescription)
-            } else if let data = data {
-                self?.adapter.data = [Section<Feed>(title: "Business", items: data)]
-                self?.tableView.reloadData()
-            } else {
-                print("No data error")
-            }
-        }
+        state = .business
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is FeedDetailViewController {
             (segue.destination as? FeedDetailViewController)?.feedItem = choosedFeedItem
             choosedFeedItem = nil
+        }
+    }
+
+    @IBAction func onSwichState(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            state = .business
+        case 1:
+            state = .entertainment
+        default:
+            break
+        }
+    }
+
+    private func loadData(_ completion: (([Section<Feed>]?, Error?) -> Void)?) {
+        switch state {
+        case .business:
+            DataManager.shared.dataSource.getBusinessFeed { (data: [Feed]?, error: Error?) in
+                var sections: [Section<Feed>]?
+                if let data = data {
+                    sections = [Section<Feed>(title: "Business", items: data)]
+                }
+                completion?(sections, error)
+            }
+
+        case .entertainment:
+            DataManager.shared.dataSource.getEnterteinmentFeed { (data: [Feed]?, error: Error?) in
+                var sections: [Section<Feed>]?
+                if let data = data {
+                    sections = [Section<Feed>(title: "Enterteinment", items: data)]
+                    DataManager.shared.dataSource.getEnvironmentFeed { (data: [Feed]?, error: Error?) in
+                        if let data = data {
+                            sections?.append(Section<Feed>(title: "Enviroment", items: data))
+                        }
+                        completion?(sections, error)
+                    }
+                } else {
+                    completion?(nil, error)
+                }
+            }
         }
     }
 }

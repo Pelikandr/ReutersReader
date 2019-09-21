@@ -115,7 +115,7 @@
             </objects>
             <point key="canvasLocation" x="747.82608695652175" y="-311.38392857142856"/>
         </scene>
-        <!--Feed View Controller-->
+        <!--Title-->
         <scene sceneID="wg7-f3-ORb">
             <objects>
                 <viewController id="8rJ-Kc-sve" customClass="FeedViewController" customModule="ReutersReader" customModuleProvider="target" sceneMemberID="viewController">
@@ -124,10 +124,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="klp-2n-E3M">
-                                <rect key="frame" x="0.0" y="88" width="414" height="725"/>
+                                <rect key="frame" x="0.0" y="136" width="414" height="677"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="140" id="bcB-oF-OZr">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="FeedTableViewCell" rowHeight="140" id="bcB-oF-OZr" customClass="FeedTableViewCell" customModule="ReutersReader" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="55.5" width="414" height="140"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="bcB-oF-OZr" id="Rqj-bh-N6F">
@@ -158,35 +158,40 @@
                                                 <constraint firstAttribute="trailing" secondItem="QOz-R7-Qe6" secondAttribute="trailing" constant="20" id="qcy-BF-phW"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="labelDesctiption" destination="wyk-Ad-pRE" id="ndR-1e-pGj"/>
+                                            <outlet property="labelTitle" destination="QOz-R7-Qe6" id="LLh-II-B9w"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <sections/>
                             </tableView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ohi-JS-Qn6">
+                                <rect key="frame" x="66.5" y="98" width="281" height="29"/>
+                                <segments>
+                                    <segment title="First" width="140"/>
+                                    <segment title="Second" width="140"/>
+                                </segments>
+                                <connections>
+                                    <action selector="onSwichState:" destination="8rJ-Kc-sve" eventType="valueChanged" id="Rfa-Ex-Jqa"/>
+                                    <action selector="subTabControl:" destination="dPy-Kt-bEN" eventType="valueChanged" id="R48-ep-hbl"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="klp-2n-E3M" firstAttribute="bottom" secondItem="O1u-W8-tvY" secondAttribute="bottom" id="35i-yu-jKn"/>
-                            <constraint firstItem="klp-2n-E3M" firstAttribute="top" secondItem="O1u-W8-tvY" secondAttribute="top" id="LMO-mv-9JK"/>
+                            <constraint firstItem="klp-2n-E3M" firstAttribute="top" secondItem="ohi-JS-Qn6" secondAttribute="bottom" constant="10" id="cG6-fa-FtV"/>
+                            <constraint firstItem="ohi-JS-Qn6" firstAttribute="centerX" secondItem="QS5-Rx-YEW" secondAttribute="centerX" id="k30-wS-mXU"/>
+                            <constraint firstItem="ohi-JS-Qn6" firstAttribute="top" secondItem="O1u-W8-tvY" secondAttribute="top" constant="10" id="oZ1-i6-PVF"/>
                             <constraint firstItem="klp-2n-E3M" firstAttribute="leading" secondItem="O1u-W8-tvY" secondAttribute="leading" id="vcF-Xi-4Ky"/>
                             <constraint firstItem="klp-2n-E3M" firstAttribute="trailing" secondItem="O1u-W8-tvY" secondAttribute="trailing" id="xKC-Bk-ZiR"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="O1u-W8-tvY"/>
                     </view>
-                    <navigationItem key="navigationItem" id="OfW-AW-bcA">
-                        <nil key="title"/>
-                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="ohi-JS-Qn6">
-                            <rect key="frame" x="66.5" y="7" width="281" height="30"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <segments>
-                                <segment title="First" width="140"/>
-                                <segment title="Second" width="140"/>
-                            </segments>
-                            <connections>
-                                <action selector="subTabControl:" destination="dPy-Kt-bEN" eventType="valueChanged" id="R48-ep-hbl"/>
-                            </connections>
-                        </segmentedControl>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Title" largeTitleDisplayMode="always" id="OfW-AW-bcA"/>
                     <connections>
+                        <outlet property="segmentedControl" destination="ohi-JS-Qn6" id="uyN-ng-U88"/>
                         <outlet property="tableView" destination="klp-2n-E3M" id="QcV-1q-E0f"/>
                         <segue destination="UbQ-uR-Hfq" kind="show" identifier="toFeedDetail" id="RL6-ZN-Z33"/>
                     </connections>
@@ -194,7 +199,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4Nw-L8-lE0" sceneMemberID="firstResponder"/>
                 <exit id="dPy-Kt-bEN" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="1597" y="360"/>
+            <point key="canvasLocation" x="1595.6521739130435" y="359.59821428571428"/>
         </scene>
         <!--Feed Detail View Controller-->
         <scene sceneID="rPj-nb-pP0">
@@ -204,12 +209,13 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="FjX-R7-RMJ">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FjX-R7-RMJ">
                                 <rect key="frame" x="20" y="180" width="374" height="633"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
                             </textView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hurricane Lorena drenches parts of Gulf of California, moves north of Mexico's Los Cabos" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UN9-af-gPd">
                                 <rect key="frame" x="20" y="88" width="374" height="72"/>
@@ -263,6 +269,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tL7-fS-cb0" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Feed" image="second" id="cPa-gy-q4n"/>
                     <toolbarItems/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Iaf-HE-g7w">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
