@@ -12,9 +12,9 @@ class DataManager {
     static var shared = DataManager()
 
     var dataSource: DataSource {
-        if Reachability.isConnectedToNetwork(){
+        if Reachability.isConnectedToNetwork() {
             return CloudDataSource()
-        }else{
+        } else {
             return LocalDataSource()
         }
         

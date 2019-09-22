@@ -22,6 +22,10 @@ class FeedAdapter: NSObject, UITableViewDelegate, UITableViewDataSource {
         return data.count
     }
 
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return data[section].title
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data[section].items.count
     }

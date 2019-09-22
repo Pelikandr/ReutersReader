@@ -107,18 +107,24 @@ class FeedViewController: UIViewController {
                 self.indicator.stopAnimating()
                 self.indicator.hidesWhenStopped = true
             }
-
+            
         case .entertainment:
             indicator.startAnimating()
-            DataManager.shared.dataSource.getEntertainmentAndEnvironmentFeed{ (data: [Feed]?, data2: [Feed]?, error: Error?) in
+            DataManager.shared.dataSource.getEnterteinmentFeed { (data: [Feed]?, error: Error?) in
                 var sections: [Section<Feed>]?
                 if let data = data {
                     sections = [Section<Feed>(title: "Enterteinment", items: data)]
-                    sections?.append(Section<Feed>(title: "Enviroment", items: data2!))
+                    DataManager.shared.dataSource.getEnvironmentFeed { (data: [Feed]?, error: Error?) in
+                        if let data = data {
+                            sections?.append(Section<Feed>(title: "Enviroment", items: data))
+                        }
+                        completion?(sections, error)
+                        self.indicator.stopAnimating()
+                        self.indicator.hidesWhenStopped = true
+                    }
+                } else {
+                    completion?(nil, error)
                 }
-                self.indicator.stopAnimating()
-                self.indicator.hidesWhenStopped = true
-                completion?(sections, error)
             }
         }
     }
