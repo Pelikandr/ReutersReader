@@ -38,6 +38,10 @@ class DataParser: NSObject, XMLParserDelegate {
     }
 
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+        if let index = descriptionValue.range(of: "<div")?.lowerBound {
+            let substring = descriptionValue[..<index]
+            descriptionValue = String(substring)
+        }
         if elementName == "item" {
             let feed = Feed(title: titleValue, description: descriptionValue)
             feedItems.append(feed)
