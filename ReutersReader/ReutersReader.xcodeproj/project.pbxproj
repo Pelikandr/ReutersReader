@@ -22,6 +22,7 @@
 		66B6340623368CC400D16701 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B6340523368CC400D16701 /* Feed.swift */; };
 		66B6340823368D0E00D16701 /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B6340723368D0E00D16701 /* DataSource.swift */; };
 		66B6340A2336938C00D16701 /* FeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66B634092336938C00D16701 /* FeedTableViewCell.swift */; };
+		870F07732337F9840012D08C /* InternetCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 870F07722337F9840012D08C /* InternetCheck.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -35,13 +36,14 @@
 		66775938233648E10079BD3E /* FeedAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedAdapter.swift; sourceTree = "<group>"; };
 		6677593A233653F50079BD3E /* NameTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameTableViewController.swift; sourceTree = "<group>"; };
 		66B633F9233665D900D16701 /* FeedDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedDetailViewController.swift; sourceTree = "<group>"; };
-		66B633FC233680C300D16701 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DataManager.swift; path = ReutersReader/DataManager.swift; sourceTree = SOURCE_ROOT; };
-		66B633FE233681D000D16701 /* CloudDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CloudDataSource.swift; path = ReutersReader/CloudDataSource.swift; sourceTree = SOURCE_ROOT; };
-		66B63400233681E900D16701 /* LocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocalDataSource.swift; path = ReutersReader/LocalDataSource.swift; sourceTree = SOURCE_ROOT; };
-		66B6340223368C6D00D16701 /* DataParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DataParser.swift; path = ReutersReader/DataParser.swift; sourceTree = SOURCE_ROOT; };
-		66B6340523368CC400D16701 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Feed.swift; path = ReutersReader/Feed.swift; sourceTree = SOURCE_ROOT; };
-		66B6340723368D0E00D16701 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DataSource.swift; path = ReutersReader/DataSource.swift; sourceTree = SOURCE_ROOT; };
+		66B633FC233680C300D16701 /* DataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DataManager.swift; path = "ReutersReader/Data Fetching/DataManager.swift"; sourceTree = SOURCE_ROOT; };
+		66B633FE233681D000D16701 /* CloudDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CloudDataSource.swift; path = "ReutersReader/Data Fetching/CloudDataSource.swift"; sourceTree = SOURCE_ROOT; };
+		66B63400233681E900D16701 /* LocalDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LocalDataSource.swift; path = "ReutersReader/Data Fetching/LocalDataSource.swift"; sourceTree = SOURCE_ROOT; };
+		66B6340223368C6D00D16701 /* DataParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DataParser.swift; path = "ReutersReader/Data Fetching/DataParser.swift"; sourceTree = SOURCE_ROOT; };
+		66B6340523368CC400D16701 /* Feed.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Feed.swift; path = "ReutersReader/Data Fetching/Models/Feed.swift"; sourceTree = SOURCE_ROOT; };
+		66B6340723368D0E00D16701 /* DataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DataSource.swift; path = "ReutersReader/Data Fetching/DataSource.swift"; sourceTree = SOURCE_ROOT; };
 		66B634092336938C00D16701 /* FeedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTableViewCell.swift; sourceTree = "<group>"; };
+		870F07722337F9840012D08C /* InternetCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetCheck.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 				66B633FE233681D000D16701 /* CloudDataSource.swift */,
 				66B63400233681E900D16701 /* LocalDataSource.swift */,
 				66B6340223368C6D00D16701 /* DataParser.swift */,
+				870F07722337F9840012D08C /* InternetCheck.swift */,
 			);
 			path = "Data Fetching";
 			sourceTree = "<group>";
@@ -201,6 +204,7 @@
 				66775923233646F50079BD3E /* AppDelegate.swift in Sources */,
 				66B6340823368D0E00D16701 /* DataSource.swift in Sources */,
 				66B6340623368CC400D16701 /* Feed.swift in Sources */,
+				870F07732337F9840012D08C /* InternetCheck.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
