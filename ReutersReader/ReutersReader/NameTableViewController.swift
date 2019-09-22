@@ -23,10 +23,16 @@ class NameTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(updateDate), userInfo: nil, repeats: true)
+        NotificationCenter.default.addObserver(forName: FeedDetailViewController.feedChoosedNotification, object: nil, queue: nil) { [unowned self] (notification: Notification) in
+            if let title = notification.userInfo?["title"] as? String {
+                self.titleLabel.text = title
+            }
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         timer?.invalidate()
+        NotificationCenter.default.removeObserver(self, name: FeedDetailViewController.feedChoosedNotification, object: nil)
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
