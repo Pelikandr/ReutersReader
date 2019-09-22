@@ -20,6 +20,7 @@ class FeedViewController: UIViewController {
     @IBOutlet weak var segmentedControl: UISegmentedControl!
 
     var indicator = UIActivityIndicatorView()
+    var timer: Timer?
     
     private let adapter = FeedAdapter()
     private var state: FeedViewControllerState = .business {
@@ -54,6 +55,26 @@ class FeedViewController: UIViewController {
 
         state = .business
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        timer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) {_ in
+            self.loadData() { [weak self] (data: [Section<Feed>]?, error: Error?) in
+                if let error = error {
+                    print(error.localizedDescription)
+                } else if let data = data {
+                    self?.adapter.data = data
+                    self?.tableView.reloadData()
+                } else {
+                    print("No data error")
+                }
+            }
+        }
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        timer?.invalidate()
+    }
+
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.destination is FeedDetailViewController {
@@ -72,7 +93,7 @@ class FeedViewController: UIViewController {
             break
         }
     }
-
+    
     private func loadData(_ completion: (([Section<Feed>]?, Error?) -> Void)?) {
         switch state {
         case .business:
