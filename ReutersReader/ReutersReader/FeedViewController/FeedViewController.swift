@@ -133,8 +133,6 @@ class FeedViewController: UIViewController {
         indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
         indicator.style = UIActivityIndicatorView.Style.gray
         indicator.center = self.view.center
-        indicator.frame.origin.x =  330
-        indicator.frame.origin.y = 67
         self.view.addSubview(indicator)
     }
 }
