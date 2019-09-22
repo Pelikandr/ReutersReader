@@ -19,6 +19,8 @@ class FeedViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
 
+    var indicator = UIActivityIndicatorView()
+    
     private let adapter = FeedAdapter()
     private var state: FeedViewControllerState = .business {
         didSet {
@@ -43,6 +45,8 @@ class FeedViewController: UIViewController {
         tableView.delegate = adapter
         tableView.dataSource = adapter
 
+        activityIndicator()
+        
         adapter.onNewsSelected = { [unowned self] (feed: Feed) in
             self.choosedFeedItem = feed
             self.performSegue(withIdentifier: "toFeedDetail", sender: nil)
@@ -72,24 +76,39 @@ class FeedViewController: UIViewController {
     private func loadData(_ completion: (([Section<Feed>]?, Error?) -> Void)?) {
         switch state {
         case .business:
+            indicator.startAnimating()
             DataManager.shared.dataSource.getBusinessFeed { (data: [Feed]?, error: Error?) in
                 var sections: [Section<Feed>]?
                 if let data = data {
                     sections = [Section<Feed>(title: "Business", items: data)]
                 }
                 completion?(sections, error)
+                self.indicator.stopAnimating()
+                self.indicator.hidesWhenStopped = true
             }
 
         case .entertainment:
+            indicator.startAnimating()
             DataManager.shared.dataSource.getEntertainmentAndEnvironmentFeed{ (data: [Feed]?, data2: [Feed]?, error: Error?) in
                 var sections: [Section<Feed>]?
                 if let data = data {
                     sections = [Section<Feed>(title: "Enterteinment", items: data)]
                     sections?.append(Section<Feed>(title: "Enviroment", items: data2!))
                 }
+                self.indicator.stopAnimating()
+                self.indicator.hidesWhenStopped = true
                 completion?(sections, error)
             }
         }
+    }
+    
+    func activityIndicator() {
+        indicator = UIActivityIndicatorView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        indicator.style = UIActivityIndicatorView.Style.gray
+        indicator.center = self.view.center
+        indicator.frame.origin.x =  330
+        indicator.frame.origin.y = 67
+        self.view.addSubview(indicator)
     }
 }
 
