@@ -32,51 +32,52 @@ class CloudDataSource: DataSource {
             task.resume()
         }
     }
-
-    func getEnterteinmentFeed(_ completion: (([Feed]?, Error?) -> Void)?) {
-        DispatchQueue.global(qos: .background).async {
+    
+    func getEntertainmentAndEnvironmentFeed(_ completion: (([Feed]?, [Feed]?,  Error?) -> Void)?) {
+        let enterteinmentQueue = DispatchQueue.global(qos: .background)
+        let environmentQueue = DispatchQueue.global(qos: .background)
+        let dispatchGroup = DispatchGroup()
+        
+        var entertainmentFeed: [Feed]?
+        
+        enterteinmentQueue.async(group: dispatchGroup) {
             let url = URL(string: "http://feeds.reuters.com/reuters/entertainment.xml")
-
+            
             let task = URLSession.shared.dataTask(with: url!) { data, response, error in
                 guard let data = data, error == nil else {
                     DispatchQueue.main.async {
-                        completion?(nil, error)
+                        completion?(nil, nil, error)
                     }
                     return
                 }
-
+                
                 let parser = DataParser()
                 parser.parse(data, completion: { (feed: [Feed]) in
-                    DispatchQueue.main.async {
-                        completion?(feed, nil)
-                    }
+                    entertainmentFeed = feed
                 })
             }
             task.resume()
         }
-    }
-
-    func getEnvironmentFeed(_ completion: (([Feed]?, Error?) -> Void)?) {
-        DispatchQueue.global(qos: .background).async {
+        
+        environmentQueue.async(group: dispatchGroup) {
             let url = URL(string: "http://feeds.reuters.com/reuters/environment.xml")
-
+            
             let task = URLSession.shared.dataTask(with: url!) { data, response, error in
                 guard let data = data, error == nil else {
                     DispatchQueue.main.async {
-                        completion?(nil, error)
+                        completion?(nil, nil, error)
                     }
                     return
                 }
-
+                
                 let parser = DataParser()
                 parser.parse(data, completion: { (feed: [Feed]) in
                     DispatchQueue.main.async {
-                        completion?(feed, nil)
+                        completion?(entertainmentFeed, feed, nil)
                     }
                 })
             }
             task.resume()
         }
     }
-
 }

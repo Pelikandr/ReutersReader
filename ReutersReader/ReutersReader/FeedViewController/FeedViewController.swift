@@ -81,19 +81,13 @@ class FeedViewController: UIViewController {
             }
 
         case .entertainment:
-            DataManager.shared.dataSource.getEnterteinmentFeed { (data: [Feed]?, error: Error?) in
+            DataManager.shared.dataSource.getEntertainmentAndEnvironmentFeed{ (data: [Feed]?, data2: [Feed]?, error: Error?) in
                 var sections: [Section<Feed>]?
                 if let data = data {
                     sections = [Section<Feed>(title: "Enterteinment", items: data)]
-                    DataManager.shared.dataSource.getEnvironmentFeed { (data: [Feed]?, error: Error?) in
-                        if let data = data {
-                            sections?.append(Section<Feed>(title: "Enviroment", items: data))
-                        }
-                        completion?(sections, error)
-                    }
-                } else {
-                    completion?(nil, error)
+                    sections?.append(Section<Feed>(title: "Enviroment", items: data2!))
                 }
+                completion?(sections, error)
             }
         }
     }
